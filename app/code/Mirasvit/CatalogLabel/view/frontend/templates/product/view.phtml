@@ -1,0 +1,22 @@
+<?php
+$_attributes = $block->getAttributes();
+?>
+<div class="cataloglabel cataloglabel-product-view cataloglabel-<?php echo $block->getPlaceholderCode() ?>">
+<table>
+    <?php foreach ($_attributes as $_attribute): ?>
+        <?php if ($_attribute->getImage()): ?>
+        <tr>
+            <td>
+                <img src="<?php echo $block->helper('mstcore/image')->init($_attribute, 'image', 'cataloglabel')
+                    ->resize($block->getWidth(), $block->getHeight()) ?>">
+            </td>
+            <td>
+                <b><?php echo $_attribute->getTitle() ?></b>
+                <?php echo $_attribute->getDescription() ?>
+                &nbsp;
+            </td>
+        </tr>
+        <?php endif ?>
+    <?php endforeach ?>
+</table>
+</div>

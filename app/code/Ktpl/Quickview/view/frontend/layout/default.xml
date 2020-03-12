@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category   Krish
+ * @package    Ktpl_Quickview
+ * @author     Extension Team
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">    
+    <head>
+        <!-- <css src="Ktpl_Quickview::css/jquery.fancybox.css" /> -->
+        <css src="Ktpl_Quickview::css/magnific-popup.css" />
+    </head>
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="Ktpl\Quickview\Block\Initialize" name="ktpl.quickview.initialize" template="Ktpl_Quickview::config.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

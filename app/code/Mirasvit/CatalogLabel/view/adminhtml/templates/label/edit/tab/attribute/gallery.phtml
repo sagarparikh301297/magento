@@ -1,0 +1,162 @@
+<?php
+/* @var \Mirasvit\CatalogLabel\Block\Adminhtml\Label\Edit\Tab\Attribute\Gallery $block */
+/**
+ $block->getUrlManager()  \Magento\Framework\UrlInterface  $_urlManager
+ */
+?>
+<div class="fieldset">
+    <div class="grid">
+        <div class="hor-scroll">
+            <table cellspacing="0" class="data border m__cataloglabel_attribute_table" width="100%">
+                <thead>
+                    <tr class="headings">
+                        <th><?php echo __('Product View') ?></th>
+                        <th><?php echo __('Product List') ?></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="<?php echo count($block->getImageType()) * 3 + 2 ?>" class="a-right">
+                            <?php echo $block->getAddButtonHtml()?>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody id="link_items_body">
+                </tbody>
+            </table>
+            <div class="m__cataloglabel_hide">
+                <?php echo $block->getImageField(); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'prototype',
+        'cataloglabelLabelEdit'
+    ], function($) {
+        var maxUploadFileSizeInBytes = 134217728;
+        var maxUploadFileSize = '128M';
+
+        var linkTemplate = '' + '<tr>';
+        linkTemplate += '' +
+            '<td class="m__cataloglabel_hide">' +
+            '<input type="hidden" name="attribute[{{id}}][option_id]" value="{{id}}" />' +
+            '{{label}}' +
+            '<input type="text" class="__option_text__ input-text" name="attribute[{{id}}][option_text]" value="{{option_text}}" />' +
+            '</td>';
+        <?php foreach ($block->getImageType() as $type => $title): ?>
+            linkTemplate += '' + '<td class="m__cataloglabel_float"><table class="m__cataloglabel_attribute_subtable">' +
+                '<td class="m__cataloglabel_bold">' +
+                '{{label}}' +
+                '</td>' +
+                '<td id="gallery_cell_{{id}}_<?php echo $type; ?>">' +
+                    '<div class="files">' +
+                        '<div class="row">' +
+                            '<input type="hidden" class="__delete__" name="attribute[{{id}}][display][<?php echo $type; ?>_is_delete]" value="" />' +
+                            '<input type="hidden" id="attribute_{{id}}_<?php echo $type; ?>_file_save" name="attribute[{{id}}][display][<?php echo $type; ?>_file]" value="{{file_save}}" />' +
+                            '<div id="attribute_{{id}}_<?php echo $type; ?>_file">' +
+                                '<div id="attribute_{{id}}_<?php echo $type; ?>_file-old" class="file-row-info"></div>' +
+                                '<div id="attribute_{{id}}_<?php echo $type; ?>_file-new" class="file-row-info"></div>' +
+                                '<div class="clear"></div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div>' +
+                            '<span id="attribute_{{id}}_<?php echo $type ?>_sample_container"></span>' +
+                        '</div>' +
+                    '</div>' +
+                '</td>' +
+                '<td>' +
+                    '<span>Title: </span>' +
+                    '<input type="text" class="input-text m__cataloglabel_attribute_input_width" name="attribute[{{id}}][display][<?php echo $type; ?>_title]" value="{{<?php echo $type; ?>_title}}">' +
+                '</td>' +
+                '<td>' +
+                    '<span>Description: </span>' +
+                    '<input type="text" class="input-text m__cataloglabel_attribute_input_width" name="attribute[{{id}}][display][<?php echo $type; ?>_description]" value="{{<?php echo $type; ?>_description}}">' +
+                '</td>' +
+                '<td>' +
+                    '<span>URL: </span>' +
+                    '<input type="text" class="input-text m__cataloglabel_attribute_input_width" name="attribute[{{id}}][display][<?php echo $type; ?>_url]" value="{{<?php echo $type; ?>_url}}">' +
+                '</td>' +
+                '</table></td>';
+        <?php endforeach; ?>
+
+        linkTemplate += '' +
+            '<td class="m__cataloglabel_delete_button">' +
+                '<button type="button" class="scalable delete icon-btn delete-link-item"><span>Delete</span></button>' +
+            '</td>' +
+        '</tr>';
+
+        var linkItems = {
+            tbody: $('#link_items_body'),
+            templateSyntax: /(^|.|\r|\n)({{(\w+)}})/,
+            templateText: linkTemplate,
+            itemCount: 1,
+            uploader: {},
+
+            add: function (data) {
+                alertAlreadyDisplayed = false;
+                this.template = new Template(this.templateText, this.templateSyntax);
+
+                if (data.value == undefined) {
+                    data.value = this.itemCount;
+                }
+
+                data.id = data.value;
+
+                var row = this.template.evaluate(data);
+                $(this.tbody).append(row);
+
+                if (data.label) {
+                    $('.__option_text__', this.tbody).each(function (elm) {
+                        this.remove();
+                    });
+                }
+
+                <?php foreach ($block->getImageType() as $type => $title): ?>
+                    if (!data.<?php echo $type ?>_file_save) {
+                        data.<?php echo $type ?>_file_save = {};
+                    }
+                    var id = data.id + '_<?php echo $type ?>';
+
+                    var newImg = $('#img_field-container').clone();
+                    $(newImg).attr('id', 'img-uploader-' + id);
+
+                    var currentTd = $('tr td[id="gallery_cell_' + id + '"]', this.tbody);
+                    $(currentTd).prepend(newImg);
+                    var fileUploader = $(newImg).cataloglabelLabelEdit({
+                        galleryContainer: currentTd,
+                        id: id
+                    });
+
+                    if (data.<?php echo $type; ?>_file_save.url) {
+                        currentTd.trigger('addItem', data.<?php echo $type; ?>_file_save);
+                    }
+
+                    this.uploader[id] = fileUploader;
+                <?php endforeach ?>
+
+                this.itemCount++;
+            }
+        }
+
+        $('body').on('click', 'tbody#link_items_body .delete-link-item', function() {
+            var row = $(this).parents('tr');
+            $('input', row).not('input[name*="option_id"]').val('');
+            $('input[type="hidden"].__delete__', row).val(1);
+
+            $(row).addClass('no-display ignore-validate').hide();
+            $('.actions button.action-delete', row).click();
+        });
+
+        if ($('#add_link_item').length) {
+            $('body').on('click', '#add_link_item', linkItems.add.bind(linkItems));
+        }
+
+        <?php foreach ($block->getAttibuteOptions() as $item): ?>
+            linkItems.add(<?php echo json_encode($item) ?>);
+        <?php endforeach ?>
+    });
+</script>

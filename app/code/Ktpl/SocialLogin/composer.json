@@ -1,0 +1,49 @@
+{
+  "name": "ktpl/magento-2-social-login",
+  "description": "Magento 2 Social Login extension is designed for quick login to your Magento 2 store without procesing complex register steps",
+  "require": {
+    "hybridauth/hybridauth": "^2.14.0"
+  }
+  ,
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
+  },
+  "type": "magento2-module",
+  "version": "2.8.0",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ktpl",
+      "email": "biz@krishtechnolabs.com",
+      "homepage": "https://www.krishtechnolabs.com",
+      "role": "Technical Support"
+    }
+  ],
+  "keywords": [
+    "magento 2",
+    "social login",
+    "magento 2 social login",
+    "facebook login",
+    "Google Login",
+    "Instagram Login",
+    "LinkedIn Login",
+    "Microsoft Live Login",
+    "Twitter Login",
+    "Yahoo Login",
+    "FourSquare Login",
+    "Amazon Login",
+    "Login",
+    "ktpl",
+    "google",
+    "facebook",
+    "twitter"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Ktpl\\SocialLogin\\": ""
+    }
+  }
+}

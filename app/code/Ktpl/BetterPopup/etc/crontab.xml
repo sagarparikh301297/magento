@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Ktpl
+ * @package     Ktpl_BetterPopup
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="ktpl_betterpopup_cron" instance="Ktpl\BetterPopup\Cron\SendMail" method="execute">
+            <schedule>0 * * * 6</schedule>
+        </job>
+    </group>
+</config>

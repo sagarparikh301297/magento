@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="SimpleMagento_CustomReport::customreports" title="Custom Reports" translate="title" module="SimpleMagento_CustomReport" sortOrder="1" parent="Magento_Reports::report" resource="SimpleMagento_CustomReport::customreports"/>
+        <add id="SimpleMagento_CustomReport::customreports_form" resource="SimpleMagento_CustomReport::customreports" title="Order By Country" action="customreports/index/form" module="SimpleMagento_CustomReport" sortOrder="10" parent="SimpleMagento_CustomReport::customreports" dependsOnModule="SimpleMagento_CustomReport"/>
+    </menu>
+</config>
+
+
+

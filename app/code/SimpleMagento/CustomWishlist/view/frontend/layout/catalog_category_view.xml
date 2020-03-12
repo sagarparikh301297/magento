@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<referenceContainer name="content">
+    <referenceBlock name="category.product.addto">
+        <block class="Magento\Wishlist\Block\Catalog\Product\ProductList\Item\AddTo\Wishlist"
+               name="category.product.addto.wishlist" as="wishlist" before="compare"
+               template="SimpleMagento_CustomWishlist::catalog/product/list/addto/wishlist.phtml"/>
+    </referenceBlock>
+</referenceContainer>

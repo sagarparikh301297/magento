@@ -1,0 +1,83 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+
+    <?php   $someJSON = $block->getGalleryImagesJson();
+    $someArray = json_decode($someJSON, true);
+    ?>
+    <div class="container">
+        <div class="row" id="myslider">
+            <div class="col-sm-8">
+                <div class="videos-slider-2">
+                    <?php foreach ($someArray as $value => $key){ ?>
+                        <div>
+                            <div class="bs-overlay">
+                                <img src="<?= /* @noEscape */ $key['full'] ?>" alt="" />
+                            </div>
+                        </div>
+                    <?php }?>
+                </div>
+                <div class="slider-nav-thumbnails">
+                    <?php foreach ($someArray as $value => $key){ ?>
+                        <div>
+                            <img src="<?= /* @noEscape */ $key['thumb'] ?>" alt="One">
+                        </div>
+                    <?php }?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        require(['jquery', 'jquery/ui', 'slickSlider'], function($){
+            "use strict";
+            var jq = $.noConflict();
+
+            jq(document).ready( function() {
+
+                jq(".videos-slider-2").slick({
+                    autoplay: false,
+                    slidesToScroll: 1,
+                    slidesToShow: 1,
+                    arrows: true,
+                    dots: false,
+                    asNavFor: '.slider-nav-thumbnails',
+                    prevArrow:"<button type='button' class='slick-prev pull-left'></button>",
+                    nextArrow:"<button type='button' class='slick-next pull-right'></button>",
+                });
+                jq(".slider-nav-thumbnails").slick({
+                    autoplay: false,
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    asNavFor: '.videos-slider-2',
+                    dots: true,
+                    focusOnSelect: true,
+                    variableWidth: true
+                });
+
+                // Remove active class from all thumbnail slides
+                jq('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+
+                // Set active class to first thumbnail slides
+                jq('.slider-nav-thumbnails .slick-slide').eq(0).addClass('slick-active');
+
+                // On before slide change match active thumbnail to current slide
+                jq('.videos-slider-2').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+                    var mySlideNumber = nextSlide;
+                    jq('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+                    jq('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
+                });
+                jq('#myslider').show();
+            });
+        });
+    </script>
+

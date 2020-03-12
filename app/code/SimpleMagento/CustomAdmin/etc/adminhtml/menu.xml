@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="SimpleMagento_CustomAdmin::member" title="Affiliate Member" translate="title" module="SimpleMagento_CustomAdmin" sortOrder="200"  resource="SimpleMagento_CustomAdmin::parent"/>
+        <add id="SimpleMagento_CustomAdmin::affiliate_member" title="Affiliate Member" translate="title" module="SimpleMagento_CustomAdmin" sortOrder="200" parent="SimpleMagento_CustomAdmin::member" action="affiliate/member/index" resource="SimpleMagento_CustomAdmin::parent"/>
+    </menu>
+</config>

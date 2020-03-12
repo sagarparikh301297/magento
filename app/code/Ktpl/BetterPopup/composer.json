@@ -1,0 +1,23 @@
+{
+  "name": "ktpl/module-better-popup",
+  "description": "Magento 2 Better Popup",
+  "type": "magento2-module",
+  "version": "1.1.1",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ktpl",
+      "email": "biz@krishtechnolabs.com",
+      "homepage": "https://www.krishtechnolabs.com/",
+      "role": "Technical Support"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Ktpl\\BetterPopup\\": ""
+    }
+  }
+}

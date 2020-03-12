@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">customreports_form.customreports_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="SimpleMagento\CustomReport\Block\Adminhtml\CustomReport\Edit\SaveButton"/>
+            <button name="reset" class="SimpleMagento\CustomReport\Block\Adminhtml\CustomReport\Edit\ResetButton"/>
+        </buttons>
+        <namespace>cms_block_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>customreports_form.customreports_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="customreports_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="SimpleMagento\CustomAdmin\Model\Ui\DataProvider" name="customreports_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_end</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="report_filter">
+        <settings>
+            <label translate="true">Other Settings</label>
+        </settings>
+            <field name="date_used" formElement="select">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">report_filter</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Date Used</label>
+                    <dataScope>date_used</dataScope>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="SimpleMagento\CustomReport\Model\Config\Source\DataUsed"/>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="start_date">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="label" xsi:type="string" translate="true">To</item>
+                        <item name="formElement" xsi:type="string">date</item>
+                        <item name="source" xsi:type="string">page</item>
+                        <item name="sortOrder" xsi:type="number">21</item>
+                        <item name="dataScope" xsi:type="string">end_date</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="end_date">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="label" xsi:type="string" translate="true">From</item>
+                        <item name="formElement" xsi:type="string">date</item>
+                        <item name="source" xsi:type="string">page</item>
+                        <item name="sortOrder" xsi:type="number">21</item>
+                        <item name="dataScope" xsi:type="string">start_date</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="order_status" formElement="select">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="component" xsi:type="string">SimpleMagento_CustomReport/js/form/element/options</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Order Status</label>
+                    <dataScope>status</dataScope>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="SimpleMagento\CustomReport\Model\Config\Source\OrderStatus"/>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="multiselect_example[]" formElement="multiselect">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+                    <settings>
+                        <dataType>text</dataType>
+                        <label translate="true">Multiselect Example</label>
+                        <dataScope>multiselect_example</dataScope>
+                    </settings>
+                    <formElements>
+                        <multiselect>
+                            <settings>
+                                <options>
+                                    <option name="1" xsi:type="array">
+                                        <item name="value" xsi:type="string">canceled</item>
+                                        <item name="label" xsi:type="string">Canceled</item>
+                                    </option>
+                                    <option name="2" xsi:type="array">
+                                        <item name="value" xsi:type="string">closed</item>
+                                        <item name="label" xsi:type="string">Closed</item>
+                                    </option>
+                                    <option name="3" xsi:type="array">
+                                        <item name="value" xsi:type="string">processing</item>
+                                        <item name="label" xsi:type="string">Processing</item>
+                                    </option>
+                                </options>
+                            </settings>
+                        </multiselect>
+                    </formElements>
+            </field>
+        </fieldset>
+</form>

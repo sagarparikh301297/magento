@@ -1,0 +1,32 @@
+
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$id = $product->getId();
+$delivery_days = explode(' ',$product->getAttributeText('delivery_days'));
+
+$scopeConfig = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface');
+$enable = $scopeConfig->getValue('ktpl/delivery_config/enable');
+$class = 'template_1';
+
+if($enable){
+    $templateValues =json_decode($scopeConfig->getValue('ktpl/delivery_config/template'));
+}
+
+if($templateValues) {
+    foreach ($templateValues as $templateValue) {
+        $dayoption = explode(' ', $templateValue->dayoption);
+
+        if ($dayoption[0] == $delivery_days[0]) {
+            $class = $templateValue->template;
+        }
+    }
+}
+if($enable && $delivery_days):
+?>
+<div class="available_delivery_days">
+    <div class='<?= $class ?>'>
+        <span><strong>Delivery Available in <?= __($delivery_days[0]) ?> Days</strong></span>
+    </div>
+</div>
+<?php endif; ?>

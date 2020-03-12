@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Ktpl
+ * @package     Ktpl_BetterPopup
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="after.body.start" label="Page Top">
+            <block class="Ktpl\BetterPopup\Block\Popup" template="Ktpl_BetterPopup::popup/popup.phtml" before="-" name="mp_betterpopup" ifconfig="betterpopup/general/enabled"/>
+        </referenceContainer>
+    </body>
+</page>

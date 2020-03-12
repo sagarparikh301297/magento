@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="Krish_Tech" sortOrder="120" translate="label" >
+            <label>Krish Technolabs</label>
+        </tab>
+        <section id="CustomSection" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" >
+            <label>Show Sale on HomePage</label>
+            <tab>Krish_Tech</tab>
+            <resource>SimpleMagento_KrishTech::parent</resource>
+            <group id="Customgroup" showInDefault="1" showInStore="1" showInWebsite="1">
+                <label>Catalog Price Rule Display</label>
+                <field id="Customfield" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"
+                       type="select" sortOrder="100">
+                    <label>Select Catalog Price Rule</label>
+                    <source_model>SimpleMagento\KrishTech\Model\Config\Source\GetCatalog_Rule</source_model>
+                </field>
+                <field id="CustomSecondfield" showInWebsite="1" showInStore="1" showInDefault="1" translate="label" type="text" sortOrder="100">
+                    <label>Enter Number to Display Product</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
+

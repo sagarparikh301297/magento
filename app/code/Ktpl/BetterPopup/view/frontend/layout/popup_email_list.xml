@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Ktpl
+ * @package     Ktpl_BetterPopup
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" label="List Email Subscriber" design_abstraction="custom">
+    <body>
+        <block class="Ktpl\BetterPopup\Block\Email\Template" name="mp.list.subscriber" template="Ktpl_BetterPopup::email/list.phtml"/>
+    </body>
+</page>

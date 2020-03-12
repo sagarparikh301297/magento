@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="alert.urls">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.deliverydays"
+                   after="product.info.addtocart"
+                   template="Ktpl_DeliveryDays::product/view/addtocart.phtml"
+                   ifconfig="ktpl/delivery_config/enable">
+            </block>
+        </referenceBlock>
+   </body>
+</page>

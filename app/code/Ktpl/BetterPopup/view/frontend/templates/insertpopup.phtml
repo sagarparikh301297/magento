@@ -1,0 +1,37 @@
+<?php
+/**
+ * @category    Ktpl
+ * @package     Ktpl_BetterPopup
+ */
+
+if ($block->isManuallyInsert()) :
+    $floatLocation = ($block->getLocationFloatButton() == 1) ? 'left: 70px' : 'right:70px'; ?>
+    <canvas id="screen"></canvas>
+    <div id="ktpl-betterpopup-block" class="ktpl-betterpopup-block"
+         data-mage-init='{"mpPopup": { "dataPopup": <?= /** @noEscape */ $block->getAjaxData() ?>}}'>
+        <div id="bio_ep" style="background-color: <?= /** @noEscape */ $block->getBackGroundColor() ?>; display:none">
+            <div class="ktpl-betterpopup-content">
+                <div id="bio_ep_close" aria-label="Close">
+                    <img src="<?= /** @noEscape */ $block->getViewFileUrl('Ktpl_BetterPopup::images/icon-close.png') ?>"/>
+                </div>
+                <div id="bio_ep_content" class="better-popup-content" style="color: <?= /** @noEscape */ $block->getTextColor() ?>">
+                    <?php /** @noEscape */ $block->getPopupContent() ?>
+                </div>
+            </div>
+            <div id="mp-powered">
+                <span class="lable-powered">Powered by Ktpl</span>
+            </div>
+        </div>
+        <?php if ($block->isShowFloatButton()) : ?>
+            <div class="mp-better-popup-click-trigger" style="<?= /** @noEscape */ $floatLocation ?>; display: none">
+                <button class="click-trigger primary"><?= /** @noEscape */ $block->getFloatLabel() ?></button>
+            </div>
+        <?php endif; ?>
+    </div>
+    <style>
+        .mppopup-text {
+            color: <?= /** @noEscape */ $block->getTextColor() ?>
+        }
+    </style>
+<?php endif; ?>
+

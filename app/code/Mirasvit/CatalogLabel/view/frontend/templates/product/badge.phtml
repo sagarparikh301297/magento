@@ -1,0 +1,54 @@
+<?php
+/** @var \Mirasvit\CatalogLabel\Block\Product\Label $block */
+/** @var \Mirasvit\CatalogLabel\Model\Label\Display $display */
+
+$displays = $block->getDisplays();
+$block->setLabelObjectsArray($displays);
+$isProductList = $block->isProductList();
+?>
+<?php if($block->getFullActionCode() != 'checkout_cart_index'): ?>
+    <?php foreach ($displays as $display): ?>
+        <?php if ($display->getImage()): ?>
+            <?php if ($display->getUrl() || $display->getDescription()): ?>
+                <span style="<?= $display->getUrl() ? 'cursor: pointer;' : '' ?>"
+                onclick="window.location = '<?php echo $display->getUrl() ? $display->getUrl() : '#' ?>'"
+                    title="<?php echo $display->getDescription() ?>"
+                <?= ($display->getUrl() && $isProductList)
+                    ? "onmouseover = 'mLabelLinkEnterFunction(this, this.parentNode)'
+                    onmouseout  = 'mLabelLinkOutFunction(this, this.parentNode)'" : ''?>>
+                <?php if ($display->getUrl() && $isProductList): ?>
+                   <script>
+                        function mLabelLinkEnterFunction(x, xparent) {
+                            var url = '<?php echo $display->getUrl();?>';
+                            if (typeof url != 'undefined') {
+                                currentmLabelEnterCustomUrl = xparent.href;
+                                xparent.href = url;
+                            }
+                        }
+
+                        function mLabelLinkOutFunction(x, xparent) {
+                            if (currentmLabelEnterCustomUrl) {
+                                xparent.href = currentmLabelEnterCustomUrl;
+                            }
+                        }
+                    </script>
+                <?php endif; ?>
+            <?php endif; ?>
+                <div class="cataloglabel cataloglabel-product-top-label cataloglabel-<?php
+                        echo $block->getPlaceholderCode();
+                    ?> cataloglabel-<?php
+                        echo $display->getType();
+                    ?> position-<?php
+                        echo $display->getPosition();
+                    ?>" style="background:url('<?php echo $display->getImageUrl() ?>'); background-repeat: no-repeat; <?php
+                        echo $block->getImageSizeHtml($display->getPosition(), $block->getLabelPositionCount($display), $display->getType()) . $display->getStyle();
+                    ?>">
+                    <span><?php echo $display->getTitle() ?></span>
+                </div>
+                <?php $block->setLabelPositionCount($display); ?>
+            <?php if ($display->getUrl() || $display->getDescription()): ?>
+                </span>
+            <?php endif; ?>
+        <?php endif ?>
+    <?php endforeach ?>
+<?php endif ?>

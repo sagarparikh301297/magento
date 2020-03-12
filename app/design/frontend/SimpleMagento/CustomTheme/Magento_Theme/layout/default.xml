@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<referenceBlock name="header.links">
+    <block class="Magento\Framework\View\Element\Html\Link\Current" name="contact-us">
+        <arguments>
+            <argument name="label" xsi:type="string">Sagar Us</argument>
+            <argument name="path" xsi:type="string">contact-us</argument>
+        </arguments>
+    </block>
+</referenceBlock>

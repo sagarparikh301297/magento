@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="Reward_Point" sortOrder="120" translate="label" >
+            <label>Reward Point</label>
+        </tab>
+        <section id="Reward_Section" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" >
+            <label>Set Reward Point</label>
+            <tab>Reward_Point</tab>
+            <resource>SimpleMagento_RewardPoint::parent</resource>
+            <group id="Reward_group" showInDefault="1" showInStore="1" showInWebsite="1">
+                <label>Price Rule Display</label>
+                <field id="Reward_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"
+                       type="select" sortOrder="100">
+                    <label>Set Point Type</label>
+                    <source_model>SimpleMagento\RewardPoint\Model\Config\Source\PointType</source_model>
+                </field>
+                <field id="Reward_Second_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label" type="text" sortOrder="100">
+                    <label>Enter Reward Point</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="Reward_Third_field" translate="label" type="multiselect" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Select Customer Groups</label>
+                    <validate>required-entry</validate>
+                    <source_model>SimpleMagento\RewardPoint\Model\Config\Source\Group</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="Reward_Fourth_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label" type="text" sortOrder="100">
+                    <label>Enter Min Cart Amount</label>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
+

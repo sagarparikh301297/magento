@@ -1,0 +1,36 @@
+<button type="button" id="popup_menu" class="action-basic open-modal-form" data-index="button_related">
+    <span data-bind="text: title">Customer Configuration</span>
+</button>
+
+<div id="popup-modal">
+
+</div>
+
+
+
+<script>
+    require(["jquery",
+            'Magento_Ui/js/modal/modal'
+        ],
+        function($, modal) {
+                var options = {
+                    type: 'popup',
+                    responsive: true,
+                    innerScroll: true,
+                    title: 'popup modal title',
+                    buttons: [{
+                        text: $.mage.__('Continue'),
+                        class: '',
+                        click: function () {
+                            this.closeModal();
+                        }
+                    }]
+                };
+
+                var popup = modal(options, $('#popup-modal'));
+                $("#popup_menu").on('click',function(){
+                    $("#popup-modal").modal("openModal");
+                });
+            });
+
+</script>

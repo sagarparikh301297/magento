@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="affiliate_member_listing_data_source" xsi:type="string">SimpleMagento\Database\Model\ResourceModel\Post\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Mageplaza\HelloWorld\Model\ResourceModel\Post\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">affiliate_member</argument>
+            <argument name="resourceModel" xsi:type="string">SimpleMagento\Database\Model\ResourceModel\AffiliateMember</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SimpleMagento\CustomAdmin\HelloWorldImageUpload" type="SimpleMagento\CustomAdmin\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">test/tmp</argument>
+            <argument name="basePath" xsi:type="string">test</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="SimpleMagento\CustomAdmin\Controller\Adminhtml\Index\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">SimpleMagento\CustomAdmin\HelloWorldImageUpload</argument>
+        </arguments>
+    </type>
+</config>

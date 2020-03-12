@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="SimpleMagento_QuestionAnswer::question_listing" title="Product Questions" translate="title" module="SimpleMagento_QuestionAnswer" parent="Magento_Backend::marketing_user_content" sortOrder="10" action="question/action/index" resource="SimpleMagento_QuestionAnswer::question_listing"/>
+    </menu>
+</config>

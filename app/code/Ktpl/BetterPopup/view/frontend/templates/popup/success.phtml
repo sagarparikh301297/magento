@@ -1,0 +1,21 @@
+<?php
+/**
+ * @category    Ktpl
+ * @package     Ktpl_BetterPopup
+ */
+?>
+<div id="popup-success-content">
+    <?= /** @noEscape */ $block->getPopupSuccessContent() ?>
+</div>
+<script>
+    require(['jquery'], function ($) {
+        $('.btn-copy').click(function () {
+            var copyText = $('#mp-coupon-code');
+            copyText.select();
+            document.execCommand("copy");
+            $('.btn-copy').text('Copied');
+            copyText.blur();
+        })
+    });
+</script>
+

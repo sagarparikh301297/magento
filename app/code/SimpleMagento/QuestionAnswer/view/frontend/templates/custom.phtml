@@ -1,0 +1,48 @@
+<?php $check = $block->getAnswer();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$getProductSku = $product->getSku();
+
+    foreach ($check as $value){
+        if ($value['question_is_approved'] == 1) {
+            if ($value['question_productsku'] == $getProductSku) { ?>
+                <?= '<strong>Question: </strong>' . $value['question_title']; ?> <br>
+                <?= '<strong>Answer: </strong>' . $value['question_answer']; ?> <br><br>
+    <?php   }
+        }
+    } ?>
+
+<br>
+<form name="askQuestionForm" id="askQuestionForm" style="display: none">
+    <label>Your Question</label>
+    <input name="question" id="question" type="text">
+    <button type="submit" value="Submit">Submit</button>
+</form>
+<button id="askButton">Post Your Question</button>
+
+<script>
+    require(
+        ['jquery','Magento_Customer/js/customer-data', 'jquery/ui'], function ($, customerData) {
+            $('#askButton').click(function () {
+                $('#askQuestionForm').show();
+                $('#askButton').hide();
+            });
+            jQuery("#askQuestionForm").submit(function (e) {
+                e.preventDefault();
+                var getQuestion = jQuery("#question").val();
+                var getProductSku = "<?= $getProductSku ?>";
+                var linkUrl = BASE_URL+'question/index/AskQuestion';
+                jQuery.ajax({
+                    url: linkUrl,
+                    type: "POST",
+                    data: {get_question: getQuestion,
+                           get_productSku: getProductSku},
+                    showLoader: true,
+                    cache: false,
+                    success: function (response) {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                    }
+                });
+            });
+        });
+</script>

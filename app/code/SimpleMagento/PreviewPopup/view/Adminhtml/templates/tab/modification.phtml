@@ -1,0 +1,65 @@
+<?php
+
+/** @var $block SimpleMagento\PreviewPopup\Block\Adminhtml\ActionsLog\Preview */
+
+$collection = $block->getModificationDetails();
+// I wanted to show custom collection Data in grid so i've added this code you can make changes according to your requirements.
+if($collection->getSize() > 0)
+{
+    ?>
+    <div class="grid">
+        <div class="admin__table-wrapper">
+            <table cellspacing="0" class="data-grid">
+                <thead>
+                <tr class="headings">
+                    <th class="data-grid-th">Name</th>
+                    <th class="data-grid-th">Old Value</th>
+                    <th class="data-grid-th">New Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="data-grid-controls-row data-row ">
+                    <td align="center" colspan="3" class="data-grid-checkbox-cell ammodel">Magento\User\Model\User\Interceptor</td>
+                </tr>
+                <?php foreach ($collection as $collections) {
+                    ?>
+                    <tr class="data-grid-controls-row data-row _odd-row">
+                        <td><?= $collections->getName(); ?></td>
+                        <td class="onlyDeletions">
+                        <pre>
+                            <ins><?= $collections->getNewValue(); ?></ins>
+                            <del><?= $collections->getOldValue(); ?></del>
+                        </pre>
+                        </td>
+                        <td class="onlyInsertions">
+                        <pre>
+                            <ins><?= $collections->getNewValue(); ?></ins>
+                            <del><?= $collections->getOldValue(); ?></del>
+                        </pre>
+                        </td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<?php } else { ?>
+    <div class="grid">
+        <div class="admin__table-wrapper">
+            <table cellspacing="0" class="data-grid">
+                <thead>
+                <tr class="headings">
+                    <th class="data-grid-th">Name</th>
+                    <th class="data-grid-th">Old Value</th>
+                    <th class="data-grid-th">New Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="data-grid-controls-row data-row _odd-row">
+                    <td align="center" colspan="3" class="dashboard-advanced-reports-content">We couldn't find any records.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<?php } ?>

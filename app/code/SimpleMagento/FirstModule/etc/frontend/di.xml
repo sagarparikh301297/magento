@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+<!--    	    <preference for="Magento\Catalog\Api\ProductRepositoryInterface" -->
+<!--    	type="SimpleMagento\FirstModule\Model\CustomImplement" />-->
+			<preference for="SimpleMagento\FirstModule\Api\PencilInterface" type="SimpleMagento\FirstModule\Model\Pencil" />
+			<preference for="SimpleMagento\FirstModule\Api\Color" type="SimpleMagento\FirstModule\Model\Yellow" />
+			<preference for="SimpleMagento\FirstModule\Api\Size" type="SimpleMagento\FirstModule\Model\Small" />
+			<preference for="SimpleMagento\FirstModule\Api\Brightness" type="SimpleMagento\FirstModule\Model\Medium" />
+
+<!--			<type name="SimpleMagento\FirstModule\Controller\Page\HelloWorld">-->
+<!--				<plugin name="plugin_on_execute"-->
+<!--						type="SimpleMagento\FirstModule\Plugin\PluginSolution"-->
+<!--						sortOrder="10"/>-->
+<!--				<plugin name="plugin2_on_execute"-->
+<!--						type="SimpleMagento\FirstModule\Plugin\PluginSolution2"-->
+<!--						sortOrder="20"/>-->
+<!--				<plugin name="plugin3_on_execute"-->
+<!--						type="SimpleMagento\FirstModule\Plugin\PluginSolution3"-->
+<!--						sortOrder="30"/>-->
+<!--			</type>-->
+
+<!--			<type name="Magento\Framework\App\RouterList">-->
+<!--				<arguments>-->
+<!--					<argument name="routerList" xsi:type="array">-->
+<!--						<item name="custom" xsi:type="array">-->
+<!--							<item name="class" xsi:type="string">SimpleMagento\FirstModule\Controller\Page\Router</item>-->
+<!--							<item name="disable" xsi:type="boolean">false</item>-->
+<!--							<item name="sortOrder" xsi:type="string">61</item>-->
+<!--						</item>-->
+<!--					</argument>-->
+<!--				</arguments>-->
+<!--			</type>-->
+
+			<type name="SimpleMagento\FirstModule\Controller\Page\HelloWorld">
+				<arguments>
+					<argument name="heavyService" xsi:type="object">SimpleMagento\FirstModule\Model\HeavyService\Proxy</argument>
+				</arguments>
+			</type>
+
+			<type name="SimpleMagento\FirstModule\Model\Pencil">
+				<arguments>
+					<argument name="color" xsi:type="object">virtualType</argument>
+					<argument name="size" xsi:type="object">SimpleMagento\FirstModule\Model\Big</argument>
+				</arguments>
+			</type>
+
+			<virtualType name="virtualType" type="SimpleMagento\FirstModule\Model\Yellow" >
+				<arguments>
+					<argument name="brightness" xsi:type="object">SimpleMagento\FirstModule\Model\High</argument>
+				</arguments>
+			</virtualType>
+
+
+</config>

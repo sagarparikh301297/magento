@@ -1,0 +1,81 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist $block */
+?>
+<style type="text/css">
+    .product-social-links .action.towishlist.already-added{
+        color: #ff0000;
+        pointer-events: none;
+        cursor: default;
+    }
+</style>
+<?php if ($block->isWishListAllowed()) : ?>
+<?php $_product = $block->getProduct(); ?>
+<?php $isAdded = $this->helper('Magento\Cart\Helper\Data')->getWishlistItemCollection()->addFieldToFilter('main_table.product_id', $_product->getId())->count(); ?>
+<?php if($isAdded){ ?>
+
+    <a href="" class="action towishlist already-added" data-action="add-to-wishlist"><span><?= $block->escapeHtml(__('Added to Wish List')) ?></span></a>
+
+    <?php }else{ ?>
+
+     <a href="#"
+        class="action towishlist"
+        id="towishlist"
+        style="display: block"
+        onclick="addProductToWishlist()"><span><?= $block->escapeHtml(__('Add to Wish List')) ?></span></a>
+
+<!--     button call after Ajax request-->
+
+     <a href=""
+        class="action towishlist already-added"
+        id="towishlist_added"
+        style="display: none"
+        data-action="add-to-wishlist"><span><?= $block->escapeHtml(__('Added to Wish List')) ?></span></a>
+
+    <?php } ?>
+    <?php $productId = json_decode($block->getWishlistParams(), true)['data']['product']; ?>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "body": {
+            "addToWishlist": <?= /* @noEscape */ $block->getWishlistOptionsJson() ?>
+        }
+    }
+</script>
+<script>
+    function addProductToWishlist() {
+        require(['jquery','Magento_Customer/js/customer-data'], function($, customerData){
+            var url = "<?php echo $block->getBaseUrl().'/wishlist/index/addtowishlist' ?>";
+            $.ajax({
+                url: url,
+                method: "POST",
+                data: { productId: <?php echo $productId ?>},
+                dataType: 'json',
+                showLoader:true,
+                cache: false,
+                success: function(data){
+                    var redirect = data.result.redirect;
+                    if(redirect) {
+                        window.location.href = '<?php echo $this->getUrl('customer/account/login') ?>';
+                    } else {
+                        $('#towishlist').css('display', 'none');
+                        $('#towishlist_added').css('display', 'block');
+                        var wishlist_link = '<a href="<?php echo $block->getBaseUrl().'/wishlist'?>">Click here for Wishlist</a>'
+                        var msg = data.result.message;
+                        var newmsg = msg+' '+wishlist_link;
+                        customerData.set('messages', {
+                            messages: [{
+                                type: 'success',
+                                text: newmsg
+                            }]
+                        });
+                    }
+                }
+            });
+        });
+    }
+</script>

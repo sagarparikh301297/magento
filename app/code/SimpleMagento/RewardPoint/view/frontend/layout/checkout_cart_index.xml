@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="cart.summary">
+            <block name="summary.custom.block" class="SimpleMagento\RewardPoint\Block\Reward"  template="SimpleMagento_RewardPoint::custom_block.phtml" before="checkout.cart.methods.bottom" />
+        </referenceBlock>
+    </body>
+</page>

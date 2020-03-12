@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+<!--    <tab id="custom_admin" translate="label" sortOrder="200">-->
+        <tab id="Custom_Admin" sortOrder="120" translate="label" >
+                <label>Custom Admin</label>
+            </tab>
+<!--            <section id="first" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">-->
+         <section id="FirstSection" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" >
+                <label>First Section</label>
+                <tab>Custom_Admin</tab>
+                <resource>SimpleMagento_CustomAdmin::parent</resource>
+                <group id="Firstgroup" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>First Group</label>
+                    <field id="Firstfield" showInWebsite="1" showInStore="1" showInDefault="1" translate="label" type="text" sortOrder="100">
+                        <label>First Text Field</label>
+                    </field>
+                    <field id="Secondfield" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"
+                           type="select" sortOrder="100">
+                        <label>First Select</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="Thirdfield" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"
+                           type="multiselect" sortOrder="100">
+                        <label>Multi Select</label>
+                        <source_model>SimpleMagento\CustomAdmin\Model\AdminArray</source_model>
+                    </field>
+                </group>
+        </section>
+    </system>
+</config>
+
+<!--<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">-->
+<!--<system>-->
+<!--    <tab id="custom_admin" translate="label" sortOrder="200">-->
+<!--        <label>Custom Admin</label>-->
+<!--    </tab>-->
+<!--    <section id="first" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">-->
+<!--        <class>separator-top</class>-->
+<!--        <label>First Section</label>-->
+<!--        <tab>custom_admin</tab>-->
+<!--        <resource>SimpleMagento_CustomAdmin::parent</resource>-->
+<!--        <group id="one" showInDefault="1" showInWebsite="1" showInStore="1">-->
+<!--            <label>First Group</label>-->
+<!--            <field id="field1" showInDefault="1" showInWebsite="1" showInStore="1" translate="label" type="text">-->
+<!--                <label>First Filed</label>-->
+<!--            </field>-->
+<!--            <field id="field2" showInDefault="1" showInWebsite="1" showInStore="1" translate="label" type="select">-->
+<!--                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+<!--                <label>Second Filed</label>-->
+<!--            </field>-->
+<!--            <field id="field3" showInDefault="1" showInWebsite="1" showInStore="1" translate="label" type="multiselect">-->
+<!--                <source_model>SimpleMagento\CustomAdmin\Model\AdminArray</source_model>-->
+<!--                <label>Third Filed</label>-->
+<!--            </field>-->
+<!--        </group>-->
+<!--    </section>-->
+<!--</system>-->
+<!--</config>-->

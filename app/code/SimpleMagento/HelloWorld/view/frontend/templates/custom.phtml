@@ -1,0 +1,21 @@
+<?php
+/**
+ * @var \SimpleMagento\HelloWorld\ViewModel\HelloView $viewModel
+ */
+$viewModel = $block->getData('view_model');
+
+$hello = $viewModel->getHelloWorld();
+$helloArray = $viewModel->helloArray();
+?>
+<h1><?php echo $hello; ?></h1>
+
+<ul>
+
+    <?php foreach ($helloArray as $helloworld): ?>
+    <li>
+        <?php echo $helloworld ?>
+    </li>
+    <?php endforeach; ?>
+
+</ul>
+

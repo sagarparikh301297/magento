@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:hellomagento:Magento_Widget:etc/widget.xsd">
+    <widget class="SimpleMagento\KrishTech\Block\Widget\Posts" id="simplemagento_krishtech_posts">
+        <label>KrishTech Widget</label>
+        <description>Posts</description>
+    </widget>
+</widgets>

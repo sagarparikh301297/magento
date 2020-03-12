@@ -1,0 +1,31 @@
+<?php
+/**
+ * @category    Ktpl
+ * @package     Ktpl_BetterPopup
+ */
+?>
+
+<div class="actions actions-template">
+    <select id="ktpl_betterpopup_templates">
+        <?php foreach ($block->getMpTemplate() as $value => $template) : ?>
+            <option value="<?= /** @noEscape */ $value ?>">
+                <?= /** @noEscape */ $template['label'] ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+    <button class="actions-template-button" type="button" id="<?= /** @noEscape */ $block->getHtmlId() ?>">
+        <span><?= /** @noEscape */ $block->escapeHtml($block->getButtonLabel()) ?></span>
+    </button>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "#ktpl_betterpopup_templates": {
+            "ktpl/templates": {
+                "jsonDataInfo": <?= /** @noEscape */ $block->getDataInfo() ?>
+            }
+        }
+    }
+</script>
+
+

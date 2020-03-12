@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<referenceContainer name="content">
+   <referenceBlock name="product.review.form">
+      <action method="setTemplate">
+        <argument name="template" xsi:type="string">SimpleMagento_ReviewCustomer::form.phtml</argument>
+      </action>
+   </referenceBlock>
+</referenceContainer>
+
+

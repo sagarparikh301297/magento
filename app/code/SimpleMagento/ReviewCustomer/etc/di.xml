@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Magento\Review\Model\ResourceModel\Review" type="SimpleMagento\ReviewCustomer\Model\ResourceModel\Review" />
+
+    <preference for="Magento\Review\Block\Adminhtml\Grid" type="SimpleMagento\ReviewCustomer\Block\Adminhtml\Grid" />
+
+    <preference for="Magento\Review\Model\ResourceModel\Review\Product\Collection" type="SimpleMagento\ReviewCustomer\Model\ResourceModel\Review\Product\Collection" />
+
+    <preference for="Magento\Review\Block\Product\ReviewRenderer" type="SimpleMagento\ReviewCustomer\Block\Product\ReviewRenderer" />
+
+    <type name="Magento\Review\Block\Adminhtml\Edit\Form">
+        <plugin name="modify_review_edit_form" type="SimpleMagento\ReviewCustomer\Plugin\Magento\Review\Block\Adminhtml\Edit\Form" />
+    </type>
+
+    <preference for="Magento\Review\Block\Adminhtml\Add\Form" type="SimpleMagento\ReviewCustomer\Block\Adminhtml\Add\Form" />
+
+</config>

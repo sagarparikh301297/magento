@@ -1,0 +1,76 @@
+<style>
+    .logout {
+        position: static;
+        display: inline-block;
+        padding-top: 6px;
+        float: right;
+    }
+
+    .dropdown {
+        position: static;
+        display: inline-block;
+        padding-top: 6px;
+        float: right;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1000;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+</style>
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->create('Magento\Customer\Model\Session');
+$wishlist = $objectManager->create('Magento\Wishlist\Model\Wishlist');
+$wishlistObj = $wishlist->loadByCustomerId($customerSession->getCustomerId())->getItemCollection();
+if ($wishlistObj) {
+    $count = $wishlistObj->getSize();
+}
+
+if($customerSession->isLoggedIn()) : ?>
+            <div class="dropdown">
+                <span><?php echo "Welcome, ".$customerSession->getCustomer()->getName()."! ▼" ?></span>
+                <div class="dropdown-content">
+                    <a class= "header_account_link" href="<?php echo $this->getUrl("customer/account");?>"><?php echo __('My Account')?></a>
+                   <br>
+                    <a class= "header_account_link" href="<?php echo $this->getUrl("wishlist");?>"><?php echo __('My Wish List')." " ?></a><span>(<?= $count ?> items)</span>
+                    <br>
+                    <a class= "header_account_link" href="<?php echo $this->getUrl("customer/account/logout");?>"><?php echo __('Logout')?></a>
+                </div>
+            </div>
+<?php else: ?>
+            <div class="logout">
+                <span class="header_account_link_list login">
+                    <a class= "header_account_link" href="<?php echo $this->getUrl("customer/account/login");?>"><?php echo __('Sign in')?></a>
+                </span> &nbsp; &nbsp;
+                <span class="header_account_link_list login">
+                    <a class= "header_account_link" href="<?php echo $this->getUrl("customer/account/create");?>"><?php echo __('Create an account')?></a>
+                </span>
+            </div>
+<?php endif;?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "customer": {
+                        "component": "Magento_Customer/js/view/customer"
+                    }
+                }
+            }
+        }
+    }
+</script>
+

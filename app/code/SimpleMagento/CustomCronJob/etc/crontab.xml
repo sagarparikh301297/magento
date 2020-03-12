@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job instance="SimpleMagento\CustomCronJob\Cron\Test" method="execute" name="simplemagento_customcronjob_test">
+            <schedule>*/1 * * * *</schedule>
+        </job>
+    </group>
+</config>

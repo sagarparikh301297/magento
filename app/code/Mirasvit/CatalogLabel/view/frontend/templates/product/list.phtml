@@ -1,0 +1,19 @@
+<?php
+$displays = $block->getDisplays();
+?>
+<div class="cataloglabel cataloglabel-product-list cataloglabel-<?php echo $block->getPlaceholderCode() ?>">
+<?php foreach ($displays as $display): ?>
+    <?php if ($display->getImage()): ?>
+        <?php if ($display->getUrl()): ?>
+            <a href="<?php echo $display->getUrl() ?>">
+        <?php endif ?>
+                <img src="<?php echo $block->helper('core/image')->init($display, 'list_image', 'cataloglabel')
+                    ->resize($block->getWidth(), $block->getHeight()) ?>" data-toggle="tooltip"
+                     data-original-title="<?php echo $display->getTitle() ?>"
+                     data-original-description="<?php echo $display->getDescription() ?>">
+        <?php if ($display->getUrl()): ?>
+            </a>
+        <?php endif ?>
+    <?php endif ?>
+<?php endforeach ?>
+</div>

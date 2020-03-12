@@ -1,0 +1,50 @@
+<?php
+/**
+ * @category  Ktpl
+ * @package   Ktpl_SocialLogin
+ */
+
+/** @var Css $block */
+
+/** @var \Ktpl\SocialLogin\Helper\Data $helper */
+$helper = $block->helper();
+$color  = $helper->getStyleManagement();
+
+use Ktpl\SocialLogin\Block\Css; ?>
+<style>
+    #social-login-popup .social-login-title {
+        background-color: <?= $color ?>
+    }
+
+    #social-login-popup .social-login #bnt-social-login-authentication,
+    #social-login-popup .forgot .primary button,
+    #social-login-popup .create .primary button,
+    #social-login-popup .fake-email .primary button {
+        background-color: <?= $color ?>;
+        border: <?= $color ?>
+    }
+
+    .block.social-login-authentication-channel.account-social-login .block-content {
+        text-align: center;
+    }
+
+    <?= $helper->getCustomCss() ?>
+
+    /* Compatible ETheme_YOURstore*/
+    div#centerColumn .column.main .block.social-login-authentication-channel.account-social-login {
+        max-width: 900px !important;
+        margin: 0 auto !important;
+    }
+
+    div#centerColumn .column.main .block.social-login-authentication-channel.account-social-login .block-content {
+        text-align: center;
+    }
+
+    @media (max-width: 1024px) {
+        div#centerColumn .column.main .block.social-login-authentication-channel.account-social-login .block-content {
+            padding: 0 15px;
+        }
+    }
+</style>
+
+<?= $block->getChildHtml() ?>

@@ -1,0 +1,58 @@
+<?php
+const PARAM_NAME_BASE64_URL = 'r64';
+const PARAM_NAME_URL_ENCODED = 'uenc';
+use Magento\Framework\App\Action\Action;
+$_productCollection = $block->getProductCollection();
+?>
+
+    <form data-mage-init='{"validation": {}}' id="load_product">
+        <div class="control">
+            <select id="get_product" name="get_product">
+                <?php foreach ($_productCollection as $_products): ?>
+                <?php $postParams = $block->getAddToCartPostParams($_products);?>
+                <option value="<?php echo $_products->getSku();  ?>"><?php echo $_products->getSku();  ?></option>
+                <?php endforeach;?>
+            </select>
+        </div>
+        <button type="submit" class="action-primary"><?= _('Submit') ?></button>
+    </form>
+
+    <br><br>
+    <div id="example" style="visibility: hidden"  > <!-- style="visibility: hidden"  style="position: absolute; right:5%;"-->
+        <hr>
+            <h1  class="productName"></h1><br><br>
+
+            <h3  class="productPrice"></h3><br><br>
+
+            <div id="newProduct">
+
+            </div><br><br>
+            <div class="control">
+                <input type="number" name="qty" id="qty" min="0" value="1" title="Qty" class="input-text qty" data-validate="{&quot;required-number&quot;:true,&quot;validate-item-quantity&quot;:{&quot;minAllowed&quot;:1,&quot;maxAllowed&quot;:10000}}">
+            </div><br><br>
+            <div>
+                <button id="addbutton" > Add</button>
+            </div>
+    </div>
+    <div id="thisdiv">
+        <hr>
+        <table id="thistable">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>SKU</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody id="tabledata">
+            </tbody>
+        </table>
+        <button id="addtocart" >Add to cart</button>
+    </div>
+
+
+<script>
+    require(['bulkrequire'],function($){
+
+});
+</script>

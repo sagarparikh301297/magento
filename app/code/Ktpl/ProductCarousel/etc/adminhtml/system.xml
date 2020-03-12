@@ -1,0 +1,276 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="ktpl" sortOrder="120" translate="label" >
+            <label>Ktpl Extensions</label>
+        </tab>
+        <section id="Carousel_Section" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" >
+                <label>Set Product Carousel</label>
+                <tab>ktpl</tab>
+                <resource>Ktpl_ProductCarousel::parent</resource>
+                <group id="Carousel_slider_one" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Treding Products</label>
+                    <field id="Carousel_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"
+                           type="select" sortOrder="100">
+                        <label>Enable</label>
+                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\Enable</source_model>
+                    </field>
+                    <field id="Carousel_Second_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label" type="text" sortOrder="100">
+                        <label>Enter Title</label>
+                        <depends>
+                            <field id="Carousel_field">0</field>
+                        </depends>
+                        <validate>required-entry</validate>
+                    </field>
+                    <field id="Carousel_Fourth_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"
+                           type="select" sortOrder="100">
+                        <label>Product Collection Based On</label>
+                        <depends>
+                            <field id="Carousel_field">0</field>
+                        </depends>
+                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\CollectionType</source_model>
+                    </field>
+                    <field id="Carousel_Fifth_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"
+                           type="select" sortOrder="100">
+                        <label>Select Attribute</label>
+                        <depends>
+                            <field id="Carousel_Fourth_field">0</field>
+                            <field id="Carousel_field">0</field>
+                        </depends>
+                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\AttributeCollection</source_model>
+                    </field>
+                    <field id="Carousel_Six_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"
+                           type="select" sortOrder="100">
+                        <label>Select Category</label>
+                        <depends>
+                            <field id="Carousel_Fourth_field">1</field>
+                            <field id="Carousel_field">0</field>
+                        </depends>
+                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\CategoryCollection</source_model>
+                    </field>
+                    <field id="Carousel_Eight_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"
+                           type="select" sortOrder="100">
+                        <depends>
+                            <field id="Carousel_field">0</field>
+                        </depends>
+                        <label>Product Sort By</label>
+                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\ProductSort</source_model>
+                    </field>
+                    <field id="Carousel_Seven_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"
+                           type="select" sortOrder="100">
+                        <depends>
+                            <field id="Carousel_field">0</field>
+                        </depends>
+                        <label>Slider Enable</label>
+                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\SliderEnable</source_model>
+                    </field>
+<!--                    <field id="Carousel_Nine_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label" type="text" sortOrder="100">-->
+<!--                        <label>Enter Position</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <validate>required-entry</validate>-->
+<!--                    </field>-->
+                </group>
+                <group id="Carousel_slider_two" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Recently Viewed Products</label>
+                    <field id="Carousel_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"
+                           type="select" sortOrder="100">
+                        <label>Enable</label>
+                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\Enable</source_model>
+                    </field>
+                    <field id="Carousel_Second_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label" type="text" sortOrder="100">
+                        <label>Enter Title</label>
+                        <depends>
+                            <field id="Carousel_field">0</field>
+                        </depends>
+                        <validate>required-entry</validate>
+                    </field>
+<!--                    <field id="Carousel_Fourth_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Product Collection Based On</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\CollectionType</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Fifth_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Select Attribute</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_Fourth_field" >0</field>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\AttributeCollection</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Six_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Select Category</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_Fourth_field">1</field>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\CategoryCollection</source_model>-->
+<!--                    </field>-->
+                    <field id="Carousel_Eight_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"
+                           type="select" sortOrder="100">
+                        <label>Product Sort By</label>
+                        <depends>
+                            <field id="Carousel_field">0</field>
+                        </depends>
+                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\ProductSort</source_model>
+                    </field>
+                    <field id="Carousel_Seven_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"
+                           type="select" sortOrder="100">
+                        <label>Slider Enable</label>
+                        <depends>
+                            <field id="Carousel_field">0</field>
+                        </depends>
+                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\SliderEnable</source_model>
+                    </field>
+<!--                    <field id="Carousel_Nine_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label" type="text" sortOrder="100">-->
+<!--                        <label>Enter Position</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <validate>required-entry</validate>-->
+<!--                    </field>-->
+                </group>
+<!--                <group id="Carousel_slider_three" showInDefault="1" showInStore="1" showInWebsite="1">-->
+<!--                    <label>Slider 3</label>-->
+<!--                    <field id="Carousel_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Enable</label>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\Enable</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Second_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label" type="text" sortOrder="100">-->
+<!--                        <label>Enter Title</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <validate>required-entry</validate>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Fourth_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Product Collection Based On</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\CollectionType</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Fifth_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Select Attribute</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_Fourth_field">0</field>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\AttributeCollection</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Six_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Select Category</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_Fourth_field">1</field>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\CategoryCollection</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Eight_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Product Sort By</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\ProductSort</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Seven_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Slider Enable</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\SliderEnable</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Nine_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label" type="text" sortOrder="100">-->
+<!--                        <label>Enter Position</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <validate>required-entry</validate>-->
+<!--                    </field>-->
+<!--                </group>-->
+<!--                <group id="Carousel_slider_four" showInDefault="1" showInStore="1" showInWebsite="1">-->
+<!--                    <label>Slider 4</label>-->
+<!--                    <field id="Carousel_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Enable</label>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\Enable</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Second_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label" type="text" sortOrder="100">-->
+<!--                        <label>Enter Title</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <validate>required-entry</validate>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Fourth_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Product Collection Based On</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\CollectionType</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Fifth_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Select Attribute</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_Fourth_field">0</field>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\AttributeCollection</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Six_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Select Category</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_Fourth_field">1</field>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\CategoryCollection</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Eight_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Product Sort By</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\ProductSort</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Seven_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label"-->
+<!--                           type="select" sortOrder="100">-->
+<!--                        <label>Slider Enable</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <source_model>Ktpl\ProductCarousel\Model\Config\Source\SliderEnable</source_model>-->
+<!--                    </field>-->
+<!--                    <field id="Carousel_Nine_field" showInWebsite="1" showInStore="1" showInDefault="1" translate="label" type="text" sortOrder="100">-->
+<!--                        <label>Enter Position</label>-->
+<!--                        <depends>-->
+<!--                            <field id="Carousel_field">0</field>-->
+<!--                        </depends>-->
+<!--                        <validate>required-entry</validate>-->
+<!--                    </field>-->
+<!--                </group>-->
+        </section>
+    </system>
+</config>
+
